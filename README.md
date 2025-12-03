@@ -42,10 +42,7 @@ Open `index.html` → TXT2IMG → choose any workflow → generate!
   python main.py --listen --port 8188 --enable-cors-header
   
   # 2. Open the testing environment
-  open index.html          # macOS
-  start index.html         # Windows
-  xdg-open index.html      # Linux
-  # Or just double-click index.html
+  python -m http.server 8000
   
   How to Add Your Own Workflow
   
