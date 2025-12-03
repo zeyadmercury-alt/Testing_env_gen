@@ -1,0 +1,222 @@
+{
+  "5": {
+    "inputs": {
+      "image_generation_model": "google/gemini-2.5-flash-image",
+      "size": "1024x1024",
+      "api_key_env_var": "OPENROUTER_API_KEY"
+    },
+    "class_type": "Griptape Driver: OpenRouter Image Generation",
+    "_meta": {
+      "title": "Griptape Driver: OpenRouter Image Generation"
+    }
+  },
+  "6": {
+    "inputs": {
+      "STRING": "transfere this summary of the category to rules:\n"
+    },
+    "class_type": "Griptape Create: Text",
+    "_meta": {
+      "title": "Griptape Create: Text"
+    }
+  },
+  "7": {
+    "inputs": {
+      "merge_string": "\\n\\n",
+      "input_1": [
+        "6",
+        0
+      ],
+      "input_2": [
+        "22",
+        0
+      ]
+    },
+    "class_type": "Griptape Combine: Merge Texts",
+    "_meta": {
+      "title": "Griptape Combine: Merge Texts"
+    }
+  },
+  "8": {
+    "inputs": {
+      "model": "gemini-2.0-flash",
+      "max_attempts_on_fail": 2,
+      "temperature": 0.1,
+      "seed": 2048,
+      "use_native_tools": true,
+      "max_tokens": -1,
+      "top_k": 250,
+      "google_api_key_env_var": "GOOGLE_API_KEY",
+      "top_p": 0.999,
+      "Get Google API Key": null
+    },
+    "class_type": "Griptape Prompt Driver: Google",
+    "_meta": {
+      "title": "Griptape Prompt Driver: Google"
+    }
+  },
+  "9": {
+    "inputs": {
+      "model": "google/gemini-2.0-flash-exp:free",
+      "max_attempts_on_fail": 2,
+      "temperature": 0.1,
+      "seed": 2048,
+      "use_native_tools": true,
+      "max_tokens": -1,
+      "min_p": 0.1,
+      "api_key_env_var": 40
+    },
+    "class_type": "Griptape Prompt Driver: OpenRouter",
+    "_meta": {
+      "title": "Griptape Prompt Driver: OpenRouter"
+    }
+  },
+  "10": {
+    "inputs": {
+      "STRING": "just response with the rules without okay or anything just write:\nRules:\n",
+      "max_subtasks": 3,
+      "config": [
+        "13",
+        0
+      ],
+      "input_string": [
+        "7",
+        0
+      ]
+    },
+    "class_type": "Griptape Create: Agent",
+    "_meta": {
+      "title": "Griptape Create: Agent"
+    }
+  },
+  "13": {
+    "inputs": {
+      "prompt_driver": [
+        "8",
+        0
+      ],
+      "image_generation_driver": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "Griptape Agent Config: Custom Structure",
+    "_meta": {
+      "title": "Griptape Agent Config: Custom Structure"
+    }
+  },
+  "14": {
+    "inputs": {
+      "STRING": "",
+      "input_string": [
+        "24",
+        0
+      ],
+      "agent": [
+        "10",
+        1
+      ]
+    },
+    "class_type": "Griptape Create: Image from Text",
+    "_meta": {
+      "title": "Griptape Create: Image from Text"
+    }
+  },
+  "15": {
+    "inputs": {
+      "images": [
+        "14",
+        0
+      ]
+    },
+    "class_type": "Griptape Display: Image",
+    "_meta": {
+      "title": "Griptape Display: Image"
+    }
+  },
+  "16": {
+    "inputs": {
+      "filename_prefix": [
+        "21",
+        0
+      ],
+      "images": [
+        "15",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "18": {
+    "inputs": {
+      "STRING": "Rules:\n\n*   Time: 10:00 AM\n*   Weather: Clear sky, no clouds\n*   Light: Warm\n*   Object: Red Banana\n",
+      "INPUT": [
+        "10",
+        0
+      ]
+    },
+    "class_type": "Griptape Display: Text",
+    "_meta": {
+      "title": "Griptape Display: Text"
+    }
+  },
+  "20": {
+    "inputs": {
+      "STRING": "while Generating the image be aware with all the rules must fit."
+    },
+    "class_type": "Griptape Create: Text",
+    "_meta": {
+      "title": "Griptape Create: Text"
+    }
+  },
+  "21": {
+    "inputs": {
+      "STRING": "lighting_test"
+    },
+    "class_type": "Griptape Create: Text",
+    "_meta": {
+      "title": "category_griptape"
+    }
+  },
+  "22": {
+    "inputs": {
+      "STRING": "Morning sun at 10:00, clear sky, warm light, no clouds, contain red Banana"
+    },
+    "class_type": "Griptape Create: Text",
+    "_meta": {
+      "title": "summary_griptape"
+    }
+  },
+  "23": {
+    "inputs": {
+      "STRING": " Bright airy kitchen at 10 am, big open window, white curtains, sunlight on pine table, soft shadows, shiny chrome tap, smooth white walls, photo taken with 50 mm lens, clear 4 K picture"
+    },
+    "class_type": "Griptape Create: Text",
+    "_meta": {
+      "title": "prompt_griptape"
+    }
+  },
+  "24": {
+    "inputs": {
+      "merge_string": "\\n\\n",
+      "input_1": [
+        "20",
+        0
+      ],
+      "input_2": [
+        "23",
+        0
+      ],
+      "input_3": [
+        "18",
+        0
+      ]
+    },
+    "class_type": "Griptape Combine: Merge Texts",
+    "_meta": {
+      "title": "Griptape Combine: Merge Texts"
+    }
+  }
+}

@@ -1,0 +1,276 @@
+{
+  "18": {
+    "inputs": {
+      "STRING": " Bright airy kitchen at 10 am, big open window, white curtains, sunlight on pine table, soft shadows, shiny chrome tap, smooth white walls, photo taken with 50 mm lens, clear 4 K picture"
+    },
+    "class_type": "Griptape Create: Text",
+    "_meta": {
+      "title": "prompt_griptape"
+    }
+  },
+  "19": {
+    "inputs": {
+      "STRING": "lighting_test"
+    },
+    "class_type": "Griptape Create: Text",
+    "_meta": {
+      "title": "category_griptape"
+    }
+  },
+  "20": {
+    "inputs": {
+      "STRING": "Morning sun at 10:00, clear sky, warm light, no clouds, contain red Banana"
+    },
+    "class_type": "Griptape Create: Text",
+    "_meta": {
+      "title": "summary_griptape"
+    }
+  },
+  "32": {
+    "inputs": {
+      "STRING": "",
+      "max_subtasks": 3,
+      "config": [
+        "41",
+        0
+      ],
+      "input_string": [
+        "45",
+        0
+      ]
+    },
+    "class_type": "Griptape Create: Agent",
+    "_meta": {
+      "title": "Griptape Create: Agent"
+    }
+  },
+  "41": {
+    "inputs": {
+      "prompt_driver": [
+        "49",
+        0
+      ],
+      "image_generation_driver": [
+        "59",
+        0
+      ]
+    },
+    "class_type": "Griptape Agent Config: Custom Structure",
+    "_meta": {
+      "title": "Griptape Agent Config: Custom Structure"
+    }
+  },
+  "44": {
+    "inputs": {
+      "STRING": "transfere this summary of the category to rules:\n"
+    },
+    "class_type": "Griptape Create: Text",
+    "_meta": {
+      "title": "Griptape Create: Text"
+    }
+  },
+  "45": {
+    "inputs": {
+      "merge_string": "\\n\\n",
+      "input_1": [
+        "44",
+        0
+      ],
+      "input_2": [
+        "20",
+        0
+      ]
+    },
+    "class_type": "Griptape Combine: Merge Texts",
+    "_meta": {
+      "title": "Griptape Combine: Merge Texts"
+    }
+  },
+  "47": {
+    "inputs": {
+      "STRING": "Okay, here's the transformation of the summary into a set of rules, suitable for a system that needs to evaluate images or scenarios:\n\n**Rules:**\n\n*   **Time of Day:** Morning (specifically 10:00 AM)\n*   **Weather:** Clear Sky, No Clouds\n*   **Lighting:** Warm Light\n*   **Object Presence:** Must contain a red Banana.\n\n**Explanation of the Transformation:**\n\n*   Each element of the summary is converted into a specific rule.\n*   The rules are phrased as conditions that must be met.\n*   The rules are explicit and unambiguous.\n\nThis format is now suitable for use in a rule-based system or for defining the criteria for a specific category of images or scenarios.\n",
+      "INPUT": [
+        "32",
+        0
+      ]
+    },
+    "class_type": "Griptape Display: Text",
+    "_meta": {
+      "title": "Griptape Display: Text"
+    }
+  },
+  "48": {
+    "inputs": {
+      "model": "google/gemini-2.0-flash-exp:free",
+      "max_attempts_on_fail": 2,
+      "temperature": 0.1,
+      "seed": 2048,
+      "use_native_tools": true,
+      "max_tokens": -1,
+      "min_p": 0.1,
+      "api_key_env_var": 40
+    },
+    "class_type": "Griptape Prompt Driver: OpenRouter",
+    "_meta": {
+      "title": "Griptape Prompt Driver: OpenRouter"
+    }
+  },
+  "49": {
+    "inputs": {
+      "model": "gemini-2.0-flash",
+      "max_attempts_on_fail": 2,
+      "temperature": 0.1,
+      "seed": 2048,
+      "use_native_tools": true,
+      "max_tokens": -1,
+      "top_k": 250,
+      "google_api_key_env_var": "GOOGLE_API_KEY",
+      "top_p": 0.999,
+      "Get Google API Key": null
+    },
+    "class_type": "Griptape Prompt Driver: Google",
+    "_meta": {
+      "title": "Griptape Prompt Driver: Google"
+    }
+  },
+  "53": {
+    "inputs": {
+      "name": "My rules",
+      "rules": [
+        "47",
+        0
+      ]
+    },
+    "class_type": "Griptape Create: Rules",
+    "_meta": {
+      "title": "Griptape Create: Rules"
+    }
+  },
+  "57": {
+    "inputs": {
+      "value": -28
+    },
+    "class_type": "PrimitiveInt",
+    "_meta": {
+      "title": "Int"
+    }
+  },
+  "58": {
+    "inputs": {
+      "STRING": "",
+      "input_string": [
+        "18",
+        0
+      ],
+      "agent": [
+        "80",
+        1
+      ]
+    },
+    "class_type": "Griptape Create: Image from Text",
+    "_meta": {
+      "title": "Griptape Create: Image from Text"
+    }
+  },
+  "59": {
+    "inputs": {
+      "image_generation_model": "google/gemini-2.5-flash-image",
+      "size": "1024x1024",
+      "api_key_env_var": "OPENROUTER_API_KEY"
+    },
+    "class_type": "Griptape Driver: OpenRouter Image Generation",
+    "_meta": {
+      "title": "Griptape Driver: OpenRouter Image Generation"
+    }
+  },
+  "62": {
+    "inputs": {
+      "images": [
+        "58",
+        0
+      ]
+    },
+    "class_type": "Griptape Display: Image",
+    "_meta": {
+      "title": "Griptape Display: Image"
+    }
+  },
+  "80": {
+    "inputs": {
+      "STRING": "",
+      "max_subtasks": 3,
+      "agent": [
+        "32",
+        1
+      ],
+      "rulesets": [
+        "53",
+        0
+      ]
+    },
+    "class_type": "Griptape Create: Agent",
+    "_meta": {
+      "title": "Griptape Create: Agent"
+    }
+  },
+  "81": {
+    "inputs": {
+      "filename_prefix": [
+        "19",
+        0
+      ],
+      "images": [
+        "62",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "82": {
+    "inputs": {
+      "STRING": "Okay, here's the transformation of the summary into a set of rules, suitable for a system that needs to evaluate images or scenarios:\n\n**Rules:**\n\n*   **Time of Day:** Morning (specifically 10:00 AM)\n*   **Weather:** Clear Sky, No Clouds\n*   **Lighting:** Warm Light\n*   **Object Presence:** Must contain a red Banana.\n\n**Explanation of the Transformation:**\n\n*   Each element of the summary is converted into a specific rule.\n*   The rules are phrased as conditions that must be met.\n*   The rules are explicit and unambiguous.\n\nThis format is now suitable for use in a rule-based system or for defining the criteria for a specific category of images or scenarios.\n",
+      "INPUT": [
+        "47",
+        0
+      ]
+    },
+    "class_type": "Griptape Display: Text",
+    "_meta": {
+      "title": "Griptape Display: Text"
+    }
+  },
+  "83": {
+    "inputs": {
+      "Output Text": "",
+      "INPUT": [
+        "47",
+        0
+      ]
+    },
+    "class_type": "Griptape Display: Data as Text",
+    "_meta": {
+      "title": "Griptape Display: Data as Text"
+    }
+  },
+  "77:75": {
+    "inputs": {
+      "STRING": ""
+    },
+    "class_type": "Griptape Create: Text",
+    "_meta": {
+      "title": "Griptape Create: Text"
+    }
+  },
+  "78:76": {
+    "inputs": {
+      "STRING": ""
+    },
+    "class_type": "Griptape Create: Text",
+    "_meta": {
+      "title": "Griptape Create: Text"
+    }
+  }
+}

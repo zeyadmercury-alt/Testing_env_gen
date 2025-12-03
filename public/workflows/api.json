@@ -1,0 +1,225 @@
+{
+  "1": {
+    "inputs": {
+      "STRING": "generate an image for a rat that is looking to a cat and very scared from the cat, crying, in a scary enviroment"
+    },
+    "class_type": "Griptape Create: Text",
+    "_meta": {
+      "title": "prompt_griptape"
+    }
+  },
+  "2": {
+    "inputs": {
+      "STRING": "",
+      "input_string": [
+        "7",
+        0
+      ],
+      "driver": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "Griptape Create: Image from Text",
+    "_meta": {
+      "title": "Griptape Create: Image from Text"
+    }
+  },
+  "3": {
+    "inputs": {
+      "prompt_driver": [
+        "4",
+        0
+      ],
+      "image_generation_driver": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "Griptape Agent Config: Custom Structure",
+    "_meta": {
+      "title": "Griptape Agent Config: Custom Structure"
+    }
+  },
+  "4": {
+    "inputs": {
+      "model": "google/gemini-2.5-flash",
+      "max_attempts_on_fail": 2,
+      "temperature": 0.1,
+      "seed": 2048,
+      "use_native_tools": true,
+      "max_tokens": -1,
+      "min_p": 0.1,
+      "api_key_env_var": "OPENROUTER_API_KEY"
+    },
+    "class_type": "Griptape Prompt Driver: OpenRouter",
+    "_meta": {
+      "title": "Griptape Prompt Driver: OpenRouter"
+    }
+  },
+  "5": {
+    "inputs": {
+      "image_generation_model": "google/gemini-3-pro-image-preview",
+      "size": "1024x1024",
+      "api_key_env_var": "OPENROUTER_API_KEY"
+    },
+    "class_type": "Griptape Driver: OpenRouter Image Generation",
+    "_meta": {
+      "title": "Griptape Driver: OpenRouter Image Generation"
+    }
+  },
+  "6": {
+    "inputs": {
+      "max_subtasks": 3,
+      "config": [
+        "3",
+        0
+      ]
+    },
+    "class_type": "Griptape Create: Agent from Config",
+    "_meta": {
+      "title": "Griptape Create: Agent from Config"
+    }
+  },
+  "7": {
+    "inputs": {
+      "STRING": "",
+      "max_subtasks": 3,
+      "agent": [
+        "6",
+        0
+      ],
+      "rulesets": [
+        "8",
+        0
+      ],
+      "input_string": [
+        "1",
+        0
+      ]
+    },
+    "class_type": "Griptape Create: Agent",
+    "_meta": {
+      "title": "Griptape Create: Agent"
+    }
+  },
+  "8": {
+    "inputs": {
+      "rules_1": [
+        "9",
+        0
+      ],
+      "rules_2": [
+        "11",
+        0
+      ],
+      "rules_3": [
+        "12",
+        0
+      ],
+      "rules_4": [
+        "13",
+        0
+      ],
+      "rules_5": [
+        "14",
+        0
+      ],
+      "rules_6": [
+        "15",
+        0
+      ],
+      "rules_7": [
+        "16",
+        0
+      ]
+    },
+    "class_type": "Griptape Combine: Rules List",
+    "_meta": {
+      "title": "Griptape Combine: Rules List"
+    }
+  },
+  "9": {
+    "inputs": {
+      "name": "LENGTH & FORMAT",
+      "rules": "LENGTH & FORMAT\n80–120 words (≈1–2 Midjourney lines or 350–500 characters).\nOne single paragraph, no line breaks, no bullets."
+    },
+    "class_type": "Griptape Create: Rules",
+    "_meta": {
+      "title": "Griptape Create: Rules"
+    }
+  },
+  "11": {
+    "inputs": {
+      "name": "STYLE & AESTHETIC TAGS",
+      "rules": "STYLE & AESTHETIC TAGS\nAlways prepend the medium first: “Photorealistic,” “Digital illustration,” “3-D render,” “Oil painting,” “Studio Ghibli anime,” etc.\n"
+    },
+    "class_type": "Griptape Create: Rules",
+    "_meta": {
+      "title": "Griptape Create: Rules"
+    }
+  },
+  "12": {
+    "inputs": {
+      "name": "SUBJECT DESCRIPTION",
+      "rules": "SUBJECT DESCRIPTION\nStart with the primary subject in 5–10 words.\nInclude posture, facial expression, clothing, era, species, gender, age, ethnicity, or architectural style—whatever is relevant.\nUse parentheses for optional details the client did not specify: (freckles), (gold embroidery), (cybernetic arm)."
+    },
+    "class_type": "Griptape Create: Rules",
+    "_meta": {
+      "title": "Griptape Create: Rules"
+    }
+  },
+  "13": {
+    "inputs": {
+      "name": "COMPOSITION & FRAMING",
+      "rules": "COMPOSITION & FRAMING\nState camera angle: “low-angle,” “eye-level,” “aerial,” “Dutch tilt,” “macro,” “wide shot,” “full-body,” “waist-up,” “profile,” “over-the-shoulder.”\nState aspect ratio only if the client asked; otherwise omit."
+    },
+    "class_type": "Griptape Create: Rules",
+    "_meta": {
+      "title": "Griptape Create: Rules"
+    }
+  },
+  "14": {
+    "inputs": {
+      "name": "LIGHTING & COLOR",
+      "rules": " LIGHTING & COLOR\nPick one dominant light source: “golden-hour backlight,” “neon rim light,” “softbox studio light,” “moonlit rim,” “volumetric god-rays.”\nName a palette: “muted teal-and-orange,” “monochrome infrared,” “pastel vaporwave,” “Kodak Portra 400,” “high-contrast chiaroscuro.”"
+    },
+    "class_type": "Griptape Create: Rules",
+    "_meta": {
+      "title": "Griptape Create: Rules"
+    }
+  },
+  "15": {
+    "inputs": {
+      "name": "MOOD & ATMOSPHERE",
+      "rules": "MOOD & ATMOSPHERE\nOne adjective pair: “serene and dreamy,” “tense and claustrophobic,” “epic and triumphant,” “lonely and desolate.”"
+    },
+    "class_type": "Griptape Create: Rules",
+    "_meta": {
+      "title": "Griptape Create: Rules"
+    }
+  },
+  "16": {
+    "inputs": {
+      "name": "OUTPUT RULE",
+      "rules": "OUTPUT RULE\nReply with the final prompt only—no explanations, no quotation marks.\n"
+    },
+    "class_type": "Griptape Create: Rules",
+    "_meta": {
+      "title": "Griptape Create: Rules"
+    }
+  },
+  "17": {
+    "inputs": {
+      "filename_prefix": "api",
+      "images": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  }
+}
