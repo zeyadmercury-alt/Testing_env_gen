@@ -46,13 +46,14 @@ Open `index.html` → TXT2IMG → choose any workflow → generate!
   
 ## How to Add Your Own Workflow
   
-  1- Build your workflow in ComfyUI
-  2- Menu → Export (API) → save as workflows/yourname.json
-  3- Duplicate one of the HTML files in txt2img/
-  4- Update:
-      json_file path
-      Node IDs for prompt/model injection
-  5- Add a new card in txt2img.html
+  1. Build your workflow in ComfyUI.
+  2. Menu → Export (API) → save as workflows/yourname.json
+  3. Duplicate one of the HTML files in txt2img/
+  4. Update:
+      - json_file path
+      - Node IDs for prompt/model injection
+  5. Add a new card in txt2img.html
+      
 
 ## Troubleshooting
   - No images appear, check Is ComfyUI running on http://127.0.0.1:8188?
