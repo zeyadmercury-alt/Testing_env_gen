@@ -34,3 +34,25 @@ Open `index.html` → TXT2IMG → choose any workflow → generate!
    ```bash
    export OPENROUTER_API_KEY=sk-...
    export GOOGLE_API_KEY=...
+
+## Quick Start (30 seconds)
+
+```bash
+# 1. Start ComfyUI with CORS enabled
+python main.py --listen --port 8188 --enable-cors-header
+
+# 2. Open the testing environment
+open index.html          # macOS
+start index.html         # Windows
+xdg-open index.html      # Linux
+# Or just double-click index.html
+
+How to Add Your Own Workflow
+
+1- Build your workflow in ComfyUI
+2- Menu → Export (API) → save as workflows/yourname.json
+3- Duplicate one of the HTML files in txt2img/
+4- Update:
+    json_file path
+    Node IDs for prompt/model injection
+5- Add a new card in txt2img.html
