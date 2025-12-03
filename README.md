@@ -37,20 +37,26 @@ Open `index.html` → TXT2IMG → choose any workflow → generate!
 
 ## Quick Start (30 seconds)
 
-```bash
-  # 1. Start ComfyUI with CORS enabled
-  python main.py --listen --port 8188 --enable-cors-header
+    ```bash
+    # 1. Start ComfyUI with CORS enabled
+    python main.py --listen --port 8188 --enable-cors-header
+    
+    # 2. Open the testing environment
+    python -m http.server 8000
   
-  # 2. Open the testing environment
-  python -m http.server 8000
+## How to Add Your Own Workflow
   
-  How to Add Your Own Workflow
-  
-  # 1- Build your workflow in ComfyUI
-  # 2- Menu → Export (API) → save as workflows/yourname.json
-  # 3- Duplicate one of the HTML files in txt2img/
-  # 4- Update:
+  1- Build your workflow in ComfyUI
+  2- Menu → Export (API) → save as workflows/yourname.json
+  3- Duplicate one of the HTML files in txt2img/
+  4- Update:
       json_file path
       Node IDs for prompt/model injection
-  # 5- Add a new card in txt2img.html
+  5- Add a new card in txt2img.html
 
+## Troubleshooting
+  - No images appear, check Is ComfyUI running on http://127.0.0.1:8188?
+  - CORS / connection refused, Start ComfyUI with --enable-cors-header or --listen
+  - “Failed to load workflow”, Check that the JSON file exists in workflows/
+  - Cloud model errors, Set correct API key env vars and restart ComfyUI.
+  
