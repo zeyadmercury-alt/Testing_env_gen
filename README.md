@@ -21,8 +21,6 @@ Open `index.html` → TXT2IMG → choose any workflow → generate!
   - **Intake → Moodboard** – Turn category + summary into rule-based images
   - **Local Model** – Classic Stable Diffusion txt2img
   - **API Models** – Gemini, OpenAI, OpenRouter via Griptape drivers
-- Real-time polling of ComfyUI history
-- Fully offline-capable (except API keys for cloud models)
 - No build step, no dependencies
 
 ## Prerequisites
