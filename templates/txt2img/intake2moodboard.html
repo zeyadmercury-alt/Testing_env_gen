@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>txt2img-Intake2Moodboard – Gen</title>
+  <link rel="stylesheet" href="/static/mercury.css"/>
+</head>
+<body>
+<header class="top-bar">
+  <a class="back" href="/txt2img">Back</a>
+  <span class="title">txt2img-Intake2Moodboard</span>
+</header>
+
+<div class="workbench">
+  <aside class="panel left">
+    <form id="genForm" onsubmit="generate(event)">
+      <label>Prompt
+        <textarea name="prompt" required placeholder="Ultra-detailed cyberpunk city..."></textarea>
+      </label>
+      <label>Category
+        <input name="category" type="text" required placeholder="Lighting"/>
+      </label>
+      <label>Summary
+        <input name="summary" type="text" required placeholder="Short desc for Category"/>
+      </label>
+      <button class="primary">Generate</button>
+    </form>
+    <div id="loader" class="loader hidden">Crafting visuals…</div>
+  </aside>
+
+  <section class="panel right" id="gallery">
+    <p class="placeholder">Images appear here</p>
+  </section>
+</div>
+
+<script>
+async function generate(e){
+  e.preventDefault();
+  const loader = document.getElementById('loader');
+  const gallery = document.getElementById('gallery');
+  loader.classList.remove('hidden');
+  const res = await fetch('/txt2img/intake2moodboard', {method:'POST', body: new FormData(e.target)});
+  const data = await res.json();
+  gallery.innerHTML = data.images.map(u=>`<img src="${u}">`).join('');
+  loader.classList.add('hidden');
+}
+</script>
+</body>
+</html>
